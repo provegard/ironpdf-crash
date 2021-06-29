@@ -1,11 +1,25 @@
 # IronPDF crash demo
 
-Example output from `dotnet run`:
+Environment: Windows, Powershell.
+
+Ensure you have .NET runtime 5.0.7 installed, as well as an older runtime, like 5.0.6.
+
+Run:
+
+    dotnet publish -r win-x64 -o dist
+
+Then:
+
+    cd dist
+    .\ironpdf-crash.exe
+
+Example output:    
 
 ```
-OS:   Microsoft Windows NT 10.0.19043.0
-.NET: 5.0.7
-Iron: NetStandard2.0 RELEASE a=IronPdf, Version=2021.3.1.0, Culture=neutral, PublicKeyToken=94e1c31412563c75 v=2021.3.1.0
+OS:     Microsoft Windows NT 10.0.19043.0
+.NET:   5.0.7
+Iron:   NetStandard2.0 RELEASE a=IronPdf, Version=2021.3.1.0, Culture=neutral, PublicKeyToken=94e1c31412563c75 v=2021.3.1.0
+Deploy:
 Fatal error. Internal CLR error. (0x80131506)
    at IronPdf.Pdfium.NativeMethods.FPDFDOC_ExitFormFillEnvironment(IntPtr)
    at IronPdf.Pdfium.PdfFile.Dispose(Boolean)
@@ -18,21 +32,32 @@ Fatal error. Internal CLR error. (0x80131506)
    at ironpdf_crash.Program.Main(System.String[])
 ```
 
-## Docker
+Then clean up:
 
-Build:
+    cd ..
+    rm -recurse dist
+    dotnet clean
 
-    docker build -t ironpdf-crash -f Dockerfile .
-    
-Run:
+Uncomment in the csproj file:
 
-    docker run --rm ironpdf-crash
-    
+    <RuntimeFrameworkVersion>5.0.6</RuntimeFrameworkVersion>
+
+Publish again:
+
+    dotnet publish -r win-x64 -o dist
+
+Then:
+
+    cd dist
+    .\ironpdf-crash.exe
+
 Example output:
 
 ```
-OS:     Unix 5.4.72.2
-.NET:   5.0.7
+OS:     Microsoft Windows NT 10.0.19043.0
+.NET:   5.0.6
+Iron:   NetStandard2.0 RELEASE a=IronPdf, Version=2021.3.1.0, Culture=neutral, PublicKeyToken=94e1c31412563c75 v=2021.3.1.0
 Deploy:
-Segmentation fault
+Image width = 595
+Image height = 841
 ```
