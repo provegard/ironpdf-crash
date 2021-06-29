@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>ironpdf_crash</RootNamespace>
+    <!-- <RuntimeFrameworkVersion>5.0.6</RuntimeFrameworkVersion> -->
   </PropertyGroup>
 
   <ItemGroup>
