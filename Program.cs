@@ -20,7 +20,10 @@ namespace ironpdf_crash
             Console.WriteLine("Deploy: " + Installation.ActualDeploymentPath);
 
             var pdf = new PdfDocument("sample.pdf");
-            _ = pdf.ToBitmap();
+            var images = pdf.ToBitmap();
+            using var image = images[0];
+            Console.WriteLine("Image width = " + image.Width);
+            Console.WriteLine("Image height = " + image.Height);
         }
     }
 }
