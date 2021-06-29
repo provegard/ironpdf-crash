@@ -12,6 +12,7 @@ namespace ironpdf_crash
             // IronPdf.Logging.Logger.EnableDebugging = true;
             IronPdf.Logging.Logger.LogFilePath = "Default.log";
             IronPdf.Logging.Logger.LoggingMode = IronPdf.Logging.Logger.LoggingModes.All;
+            IronPdf.Logging.Logger.MessageLogged += Console.WriteLine;
             
             Console.WriteLine("OS:     " + Environment.OSVersion);
             Console.WriteLine(".NET:   " + Environment.Version);
